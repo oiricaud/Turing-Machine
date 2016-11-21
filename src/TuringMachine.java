@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -64,14 +65,25 @@ public class TuringMachine {
     }
 
     private static void readInput(String text, int[][] state, String[] num_of_states, String[] num_of_m_symbols) {
-        int reader = 0;
-        String head = "";
-        System.out.println("state" + state.length);
+        String reader ="";
+        String head = num_of_m_symbols[0];
         // Rules
-        for(int i = 0 ; i < state.length; i++){
-            for(int j = 0 ; j < state.length; j++){
-                System.out.print("state = [" + i + " ");
-                System.out.print(j  + "] =  " + num_of_states[0] + " " + num_of_m_symbols[0] + " -> \n");
+        for(int i = 0 ; i < num_of_states.length; i++){
+            for(int j = 0 ; j < num_of_m_symbols.length; j++){
+                // Starting point, if head reads _ then move to right.
+                // First rule
+                if((head.equals("_"))){
+                    reader = reader + num_of_states[0] + ", " + num_of_m_symbols[j] + " -> " + num_of_states[1] + "," +
+                            " R";
+                    System.out.println(num_of_states[0] + ", " + num_of_m_symbols[j] + " -> " + num_of_states[1] + "," +
+                            " R");
+                    head = num_of_states[1];
+                    System.out.println("head:"  + head);
+                }
+                if((head.equals("inNumber"))){
+                }
+               // System.out.print("state = [" + i + " ");
+               // System.out.print(j  + "] =  " + num_of_states[0] + " " + num_of_m_symbols[0] + " -> \n");
             }
         }
     }

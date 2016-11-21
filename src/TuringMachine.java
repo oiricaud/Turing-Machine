@@ -1,6 +1,3 @@
-import java.util.Objects;
-import java.util.Scanner;
-
 /**
  Homework: I lost count.
  @author : Oscar Ivan Ricaud.
@@ -37,12 +34,12 @@ import java.util.Scanner;
  Your program should emulate the work of the Turing machine step-by-step. Return the printout of the method, the printout
  of the program that you used to test this method, and the printout of the result of this testing.
  */
-
+import java.util.Scanner;
 public class TuringMachine {
 
     public static void main(String[] args) {
         // Initialize turing machine.
-        String input = "11";
+        String input = "10101011";
         intialize_Settings(input);
     }
 
@@ -57,23 +54,36 @@ public class TuringMachine {
 
 
         int[][] state = new int[num_of_states.length][num_of_m_symbols.length];
-        readInput(text, state, num_of_states, num_of_m_symbols);
+        readInput(text, num_of_states, num_of_m_symbols);
         int[][] symbol = new int[num_of_states.length][num_of_m_symbols.length];
         int[][] lr = new int[num_of_states.length][num_of_m_symbols.length];
         int[] original_contents_of_tape = new int [100];
-
     }
 
-    private static void readInput(String text, int[][] state, String[] num_of_states, String[] num_of_m_symbols) {
+    /** This method reads the input from
+     * @param text which gets the length of the user input
+     * @param num_of_states number of states
+     * @param num_of_m_symbols number of symbols
+     */
+    private static void readInput(String text, String[] num_of_states, String[] num_of_m_symbols) {
         String reader ="";
         int pointer = 0;
         String head = num_of_states[0];
         String [] input = new String[text.length() + 2];
+
+        // Change input here
         input[0] = "_";
         input[1] = "1";
         input[2] = "0";
-        input[3] = "_";
-        System.out.println("Rules:");
+        input[3] = "1";
+        input[4] = "0";
+        input[5] = "1";
+        input[6] = "0";
+        input[7] = "1";
+        input[8] = "1";
+        input[9] = "_";
+
+        System.out.println("Input: 10101011 \n Rules:");
         // Rules
         for(int i = 0 ; i < num_of_states.length; i++){
             for(int j = 0 ; j < num_of_m_symbols.length; j++){

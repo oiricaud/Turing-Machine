@@ -14,9 +14,8 @@
 
  the number N of states q0, ..., qN − 1;
 
- we assume that q0 is the start state, that the last-but-one state qN − 2 i
-
- s the accept state, and the last state qN − 1 is the reject state;
+ we assume that q0 is the start state, that the last-but-one state qN − 2 is the accept state, and the last state qN − 1
+ is the reject state;
 
  the number M of symbols s0, ... sM − 1; we assume that s0 is the blank state _;
 
@@ -39,6 +38,18 @@
 public class TuringMachine {
 
     public static void main(String[] args) {
-        System.out.println("Oh man going to be a long night...");
+        // Initialize turing machine.
+        intializeSettings(3);
+    }
+
+    public static void intializeSettings(int i) {
+        int[] num_of_states = new int[i];
+        int[] num_of_m_symbols = new int[i];
+        int[][] what_to_do = new int[num_of_states.length][num_of_m_symbols.length];
+        int[][] what_shall_we_write = new int[num_of_states.length][num_of_m_symbols.length];
+        int[][] where_to_move = new int[num_of_states.length][num_of_m_symbols.length];
+        int[] original_contents_of_tape = new int [100];
+        int reader = 0;
+
     }
 }

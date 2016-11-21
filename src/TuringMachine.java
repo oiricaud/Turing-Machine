@@ -66,24 +66,76 @@ public class TuringMachine {
 
     private static void readInput(String text, int[][] state, String[] num_of_states, String[] num_of_m_symbols) {
         String reader ="";
-        String head = num_of_m_symbols[0];
+        String head = num_of_states[0];
+        String [] input = new String[text.length() + 2];
+        input[0] = "_";
+        input[1] = "1";
+        input[2] = "1";
+        input[3] = "_";
+        System.out.println("Rules:");
         // Rules
         for(int i = 0 ; i < num_of_states.length; i++){
             for(int j = 0 ; j < num_of_m_symbols.length; j++){
-                // Starting point, if head reads _ then move to right.
-                // First rule
-                if((head.equals("_"))){
+
+                //Rule 1 = start, _ --> inNumber, R
+                if((head.equals("start") && (num_of_m_symbols[j].equals("_")))){
                     reader = reader + num_of_states[0] + ", " + num_of_m_symbols[j] + " -> " + num_of_states[1] + "," +
                             " R";
-                    System.out.println(num_of_states[0] + ", " + num_of_m_symbols[j] + " -> " + num_of_states[1] + "," +
-                            " R");
+                    System.out.println("Rule 1) " + num_of_states[0] + ", " + num_of_m_symbols[j] + " -> " +
+                            num_of_states[1] + "," + " R");
                     head = num_of_states[1];
-                    System.out.println("head:"  + head);
                 }
-                if((head.equals("inNumber"))){
+                //Rule 2 = inNumber, 1 --> state1, R
+                if((head.equals("inNumber") && (input[j].equals("1")))){
+                    System.out.println("Rule 3) " +num_of_states[1] + ", " + input[j] + " -> " + num_of_states[2] +
+                            "," + " R");
+                    head = num_of_states[2];
                 }
-               // System.out.print("state = [" + i + " ");
-               // System.out.print(j  + "] =  " + num_of_states[0] + " " + num_of_m_symbols[0] + " -> \n");
+                //Rule 3 = inNumber, _ --> reject
+                if((head.equals("inNumber") && (input[j].equals("_")))){
+                    System.out.println(num_of_states[5]);
+                    head = num_of_states[5];
+                }
+                //Rule 4 = inNumber, 0 --> state0, R
+                if((head.equals("inNumber") && (input[j].equals("0")))){
+                    System.out.println("Rule 2) " +  num_of_states[1] + ", " + input[j] + " -> " + num_of_states[3] +
+                            "," + " R");
+                    head = num_of_states[2];
+                }
+                //Rule 5 = state0, 1 --> state1, R
+                if((head.equals("state0") && (input[j].equals("1")))){
+                    System.out.println("Rule 5) " +  num_of_states[3] + ", " + input[j] + " -> " + num_of_states[2] +
+                            "," + " R");
+                    head = num_of_states[2];
+                }
+                //Rule 6 = state0, 0 --> state0, R
+                if((head.equals("state0") && (input[j].equals("0")))){
+                    System.out.println("Rule 6) " +  num_of_states[3] + ", " + input[j] + " -> " + num_of_states[3] +
+                            "," + " R");
+                    head = num_of_states[3];
+                }
+                //Rule 7 = state1, 1 --> state1, R
+                if((head.equals("state1") && (input[j].equals("1")))){
+                    System.out.println("Rule 7) " +  num_of_states[2] + ", " + input[j] + " -> " + num_of_states[2] +
+                            "," + " R");
+                    head = num_of_states[2];
+                }
+                //Rule 8 = state1, 0 --> state0, R
+                if((head.equals("state1") && (input[j].equals("0")))){
+                    System.out.println("Rule 8) " +  num_of_states[2] + ", " + input[j] + " -> " + num_of_states[3] +
+                            "," + " R");
+                    head = num_of_states[2];
+                }
+                //Rule 9 = state1, _ --> reject
+                if((head.equals("state1") && (input[j].equals("_")))){
+                    System.out.println("Rule 9) " +  num_of_states[2] + ", " + input[j] + " -> " + num_of_states[5]);
+                    head = num_of_states[5];
+                }
+                //Rule 10 = state0, _ --> accept
+                if((head.equals("state0") && (input[j].equals("_")))){
+                    System.out.println("Rule 9) " +  num_of_states[3] + ", " + input[j] + " -> " + num_of_states[4]);
+                    head = num_of_states[4];
+                }
             }
         }
     }

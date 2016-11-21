@@ -41,41 +41,63 @@ public class TuringMachine {
 
     public static void main(String[] args) {
         // Initialize turing machine.
-        String input = "1010";
-        intialize_Settings(input.length());
+        String input = "11";
+        intialize_Settings(input);
     }
 
-    public static void intialize_Settings(int i) {
+    public static void intialize_Settings(String text) {
         // Get the name of the states from the user
-        int[] num_of_states = new int[7];
+        String[] num_of_states = new String[7];
         fill_up_da_states(num_of_states);
 
         // Get the name of the symbols from the user
-        int[] num_of_m_symbols = new int[3];
+        String[] num_of_m_symbols = new String[3];
         fill_up_da_symbols(num_of_m_symbols);
 
-        int[][] what_to_do = new int[num_of_states.length][num_of_m_symbols.length];
-        int[][] what_shall_we_write = new int[num_of_states.length][num_of_m_symbols.length];
-        int[][] where_to_move = new int[num_of_states.length][num_of_m_symbols.length];
+
+        int[][] state = new int[num_of_states.length][num_of_m_symbols.length];
+        readInput(text, state, num_of_states, num_of_m_symbols);
+        int[][] symbol = new int[num_of_states.length][num_of_m_symbols.length];
+        int[][] lr = new int[num_of_states.length][num_of_m_symbols.length];
         int[] original_contents_of_tape = new int [100];
+
+    }
+
+    private static void readInput(String text, int[][] state, String[] num_of_states, String[] num_of_m_symbols) {
         int reader = 0;
+        String head = "";
+        System.out.println("state" + state.length);
+        // Rules
+        for(int i = 0 ; i < state.length; i++){
+            for(int j = 0 ; j < state.length; j++){
+                System.out.print("state = [" + i + " ");
+                System.out.print(j  + "] =  " + num_of_states[0] + " " + num_of_m_symbols[0] + " -> \n");
+            }
+        }
     }
 
     /**
      * @param num_of_m_symbols is the number of M symbols.
      *  In this method the user will fill up the name of the symbols.
      */
-    private static void fill_up_da_symbols(int[] num_of_m_symbols) {
+    private static String[] fill_up_da_symbols(String[] num_of_m_symbols) {
+        num_of_m_symbols[0] = "_";
+        num_of_m_symbols[1] = "0";
+        num_of_m_symbols[2] = "1";
+        return num_of_m_symbols;
     }
-
     /**
      * @param num_of_states is the number of states the state machine has
      *  In this method the user will fill up the name of the states.
      */
-    private static void fill_up_da_states(int[] num_of_states) {
+    private static String[] fill_up_da_states(String[] num_of_states) {
         Scanner input = new Scanner(System.in);
-        for(int i = 0 ; i < num_of_states.length; i++){
-            System.out.println("for q" + i + ":" + input.next());
-        }
+        num_of_states[0] = ("start");
+        num_of_states[1] = ("inNumber");
+        num_of_states[2] = ("state1");
+        num_of_states[3] = ("state0");
+        num_of_states[4] = ("accept");
+        num_of_states[5] = ("reject");
+        return num_of_states;
     }
 }
